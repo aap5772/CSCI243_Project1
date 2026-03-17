@@ -1,0 +1,63 @@
+Assignment Report
+Assignment name is: Brace-topia
+
+My name is: 	NAME
+My login ID is:	ID
+
+[insert your answers after the question and add more lines as needed.]
+
+[PLEASE MAKE YOUR ANSWERS SHORT AND TO THE POINT. BULLET POINTS ARE GOOD.]
+
+============= PROGRAM STATUS ==============
+
+What is the status of the program?
+Does it: put an X inside the [] for your answer
+	[] crash?
+	[] infinite loop when it should not?
+	[] only work in printed mode?
+	[] work fine?
+	[] only implement these options: [list them below]
+	[] other? Explain below.
+
+
+How does your move algorithm work? Describe briefly in English.
+
+
+
+
+============= SIMULATION ANALYSIS ==============
+
+What did you find most revealing about the simulation?
+
+
+
+
+
+
+============= GENERAL PROJECT FEEDBACK ==============
+
+What did I learn?
+
+
+
+
+What was easy about this assignment?
+
+
+
+
+What gave you problems or troubles?
+
+
+
+
+What should the instructor do to improve this assignment?
+
+
+
+
+What would you have liked to do in this assignment?
+
+
+
+
