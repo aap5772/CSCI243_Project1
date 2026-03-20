@@ -34,8 +34,8 @@ Grid *init_grid(int size,int end_percent,int vacancy_percent){
     for(int i=0;i<size;i++){
         grid->cells[i]=malloc(size*sizeof(Agent));
         for(int j=0;j<size;j++){
-            grid->cells[i][j].type=VACANT;
-            grid->cells[i][j].happy =1;
+
+
         }
     }
 
