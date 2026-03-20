@@ -12,10 +12,7 @@ extern char *optarg;
 int dim=DEFAULT_DIM;
 int strength =DEFAULT_STRENGTH;
 int vacancy= DEFAULT_VACANCY;
-int endline =DEFAULT_ENDLINE;
-int delay=DEFAULT_DELAY;
-int cycle_count = DEFAULT_CYCLE_COUNT;
-double ave_happiness=1;
+int e ave_happiness=1;
 
 void shuffle(char *agents,int size){
     for(int i=size-1;i>0;i--){
@@ -33,9 +30,7 @@ Grid *init_grid(int size,int end_percent,int vacancy_percent){
 
     for(int i=0;i<size;i++){
         grid->cells[i]=malloc(size*sizeof(Agent));
-        for(int j=0;j<size;j++){
-
-
+        for(int j=0;j<s
         }
     }
 
@@ -61,8 +56,7 @@ Grid *init_grid(int size,int end_percent,int vacancy_percent){
     shuffle(arr,total);
 
     k=0;
-    for(int i=0;i<size;i++){
-        for(int j=0;j<size;j++){
+    fize;j++){
             grid->cells[i][j].type=arr[k++];
             grid->cells[i][j].happy=1;
         }
@@ -104,11 +98,7 @@ void print_usage(){
         "'-c N'      NA        -c4       count cycle maximum value.\n"
         "'-d dim'    15        -d 7      width and height dimension.\n"
         "'-s %%str'   50        -s 30     strength of preference.\n"
-        "'-v %%vac'   20        -v30      percent vacancies.\n"
-        "'-e %%endl'  60        -e75      percent Endline braces. Others want Newline.\n");
-}
-
-void parse_arguments(int argc,char *argv[]){
+        "'-v %%vac'   20        -v30      percent vacancparse_arguments(int argc,char *argv[]){
     int opt;
     while((opt=getopt(argc,argv,"ht:c:d:s:v:e:"))!=-1){
         switch(opt){
