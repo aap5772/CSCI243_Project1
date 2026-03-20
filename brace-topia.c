@@ -25,14 +25,10 @@ int cycle_count = DEFAULT_CYCLE_COUNT;
 double ave_happiness = 1;
 
 /*
-* shuffle: randomizes the array order
-*
-* Uses Fisher-Yates shuffle on the array
-*
-* params: agents array, size of array
+* @breif: Shuffles the array
 */
-void shuffle(char *agents, int size){
-    for(int i = size - 1; i > 0; i--){
+void shuffle(char * agents, int size){
+    for (int i = size - 1; i > 0; i--) {
         int j = rand() % (i + 1);
         char temp = agents[i];
         agents[i] = agents[j];
@@ -41,13 +37,9 @@ void shuffle(char *agents, int size){
 }
 
 /*
-* init_grid: builds and fills the grid
-*
-* Allocates a square grid and distributes agent types randomly
-*
-* params: grid size, percent endline, percent vacancy
+* @breif: Initializes the Grid
 */
-Grid *init_grid(int size, int end_percent, int vacancy_percent){
+Grid * init_grid(int size, int end_percent, int vacancy_percent){
     Grid *grid = malloc(sizeof(Grid));
     grid->dim = size;
     grid->cells = malloc(size * sizeof(Agent*));
@@ -60,37 +52,35 @@ Grid *init_grid(int size, int end_percent, int vacancy_percent){
         }
     }
 
-    int total = size * size;
-    int num_end = (total * end_percent) / 100;
-    int num_vacant = (total * vacancy_percent) / 100;
-    int num_newline = total - num_end - num_vacant;
+    int total_cells = size * size;
+    int num_end = (total_cells * end_percent) / 100;
+    int num_vacant = (total_cells * vacancy_percent) / 100;
+    int num_newline = total_cells - num_vacant - num_end;
 
-    char *arr = malloc(total * sizeof(char));
-    int k = 0;
+    char *agents = malloc(total_cells);
+    int index = 0;
 
-    for(int i = 0; i < num_end; i++) arr[k++] = ENDLINE;
-    for(int i = 0; i < num_newline; i++) arr[k++] = NEWLINE;
-    for(int i = 0; i < num_vacant; i++) arr[k++] = VACANT;
+    for(int i = 0; i < num_end; i++) agents[index++] = ENDLINE;
+    for(int i = 0; i < num_newline; i++) agents[index++] = NEWLINE;
+    for(int i = 0; i < num_vacant; i++) agents[index++] = VACANT;
 
     srand(41);
-    shuffle(arr, total);
+    shuffle(agents, total_cells);
 
-    k = 0;
+    index = 0;
     for(int i = 0; i < size; i++){
         for(int j = 0; j < size; j++){
-            grid->cells[i][j].type = arr[k++];
+            grid->cells[i][j].type = agents[index++];
             grid->cells[i][j].happy = 1;
         }
     }
 
-    free(arr);
+    free(agents);
     return grid;
 }
 
 /*
-* free_grid: releases grid memory
-*
-* Frees all rows and the grid itself
+* @breif: frees the grid
 */
 void free_grid(Grid *grid){
     assert(grid);
@@ -102,9 +92,7 @@ void free_grid(Grid *grid){
 }
 
 /*
-* print_grid: outputs the grid state
-*
-* Prints grid contents and simulation stats
+* @breif: Print function
 */
 void print_grid(const Grid *grid, int cycle, int moves){
     for(int i = 0; i < grid->dim; i++){
@@ -114,14 +102,13 @@ void print_grid(const Grid *grid, int cycle, int moves){
         put('\n');
     }
 
-    printf("cycle: %d\nmoves this cycle: %d\nteams' \"happiness\": %f\n",
-           cycle, moves, ave_happiness);
-    printf("dim: %d, %%strength of preference: %d%%, %%vacancy: %d%%, %%end: %d%%\n",
-           grid->dim, strength, vacancy, endline);
+    printf("cycle: %d\nmoves this cycle: %d\nteams' \"happiness\": %f\n"
+           "dim: %d, %%strength of preference: %d%%, %%vacancy: %d%%, %%end: %d%%\n",
+           cycle, moves, ave_happiness, grid->dim, strength, vacancy, endline);
 }
 
 /*
-* print_usage: prints usage help
+* @breif: Help command
 */
 void print_usage() {
     fprintf(stderr,
@@ -138,147 +125,74 @@ void print_usage() {
 }
 
 /*
-* parse_arguments: handles command-line flags
+* @breif: parse commandline statements
 */
-void parse_arguments(int argc, char *argv[]){
+void parse_arguments(int argc, char *argv[]) {
     int opt;
-    while((opt = getopt(argc, argv, "ht:c:d:s:v:e:")) != -1){
-        switch(opt){
+    while ((opt = getopt(argc, argv, "ht:c:d:s:v:e:")) != -1) {
+        switch (opt) {
             case 'h':
                 print_usage();
                 exit(EXIT_SUCCESS);
+
             case 't':
+                if (optarg == NULL) {
+                    fprintf(stderr, "brace-topia: option requires an argument -- 't'\n");
+                    print_usage();
+                    exit(EXIT_FAILURE);
+                }
                 delay = atoi(optarg);
                 break;
+
             case 'c':
+                if (optarg == NULL) {
+                    fprintf(stderr, "brace-topia: option requires an argument -- 'c'\n");
+                    print_usage();
+                    exit(EXIT_FAILURE);
+                }
                 cycle_count = atoi(optarg);
                 break;
+
             case 'd':
+                if (optarg == NULL) {
+                    fprintf(stderr, "brace-topia: option requires an argument -- 'd'\n");
+                    print_usage();
+                    exit(EXIT_FAILURE);
+                }
                 dim = atoi(optarg);
                 break;
+
             case 's':
+                if (optarg == NULL) {
+                    fprintf(stderr, "brace-topia: option requires an argument -- 's'\n");
+                    print_usage();
+                    exit(EXIT_FAILURE);
+                }
                 strength = atoi(optarg);
                 break;
+
             case 'v':
+                if (optarg == NULL) {
+                    fprintf(stderr, "brace-topia: option requires an argument -- 'v'\n");
+                    print_usage();
+                    exit(EXIT_FAILURE);
+                }
                 vacancy = atoi(optarg);
                 break;
+
             case 'e':
+                if (optarg == NULL) {
+                    fprintf(stderr, "brace-topia: option requires an argument -- 'e'\n");
+                    print_usage();
+                    exit(EXIT_FAILURE);
+                }
                 endline = atoi(optarg);
                 break;
+
             default:
+                fprintf(stderr, "brace-topia: invalid option -- '%c'\n", optopt);
+                print_usage();
                 exit(EXIT_FAILURE);
         }
     }
-}
-
-/*
-* calculate_happiness: computes average happiness
-*
-* Checks neighbors and assigns happiness score
-*/
-double calculate_happiness(const Grid *grid){
-    double total_happy = 0;
-    int count = 0;
-
-    for(int row = 0; row < grid->dim; row++){
-        for(int col = 0; col < grid->dim; col++){
-            int same = 0;
-            int neighbors = 0;
-            char t = grid->cells[row][col].type;
-
-            if(t == VACANT){
-                grid->cells[row][col].happy = 1.0;
-                continue;
-            }
-
-            count++;
-
-            if(row > 0 && grid->cells[row-1][col].type != VACANT){
-                neighbors++;
-                if(grid->cells[row-1][col].type == t) same++;
-            }
-            if(col > 0 && grid->cells[row][col-1].type != VACANT){
-                neighbors++;
-                if(grid->cells[row][col-1].type == t) same++;
-            }
-
-            if(neighbors == 0){
-                grid->cells[row][col].happy = 1.0;
-            } else {
-                grid->cells[row][col].happy = (double)same / neighbors;
-            }
-
-            total_happy += grid->cells[row][col].happy;
-        }
-    }
-
-    return total_happy / (grid->dim * grid->dim);
-}
-
-/*
-* move_agents: relocates unhappy agents
-*/
-int move_agents(Grid *grid, int moves){
-    int size = grid->dim * grid->dim;
-    Agent *temp = malloc(size * sizeof(Agent));
-    int count = 0;
-
-    for(int i = 0; i < grid->dim; i++){
-        for(int j = 0; j < grid->dim; j++){
-            if(grid->cells[i][j].type != VACANT &&
-               (grid->cells[i][j].happy * 100) <= strength){
-                temp[count++] = grid->cells[i][j];
-                grid->cells[i][j].type = VACANT;
-            }
-        }
-    }
-
-    for(int i = 0; i < count; i++){
-        int r = rand() % grid->dim;
-        int c = rand() % grid->dim;
-
-        if(grid->cells[r][c].type == VACANT){
-            grid->cells[r][c] = temp[i];
-            moves++;
-        }
-    }
-
-    free(temp);
-    return moves;
-}
-
-void infinite_mode(Grid *grid){
-    int cycle = 0;
-    int moves = 0;
-
-    while(1){
-        ave_happiness = calculate_happiness(grid);
-        moves = move_agents(grid, 0);
-        print_grid(grid, cycle++, moves);
-        usleep(delay);
-    }
-}
-
-void print_mode(Grid *grid, int max_cycles){
-    int cycle = 0;
-
-    while(cycle <= max_cycles){
-        ave_happiness = calculate_happiness(grid);
-        int moves = move_agents(grid, 0);
-        print_grid(grid, cycle++, moves);
-    }
-}
-
-int main(int argc, char *argv[]){
-    parse_arguments(argc, argv);
-    Grid *grid = init_grid(dim, endline, vacancy);
-
-    if(cycle_count == -1){
-        infinite_mode(grid);
-    } else {
-        print_mode(grid, cycle_count);
-    }
-
-    free_grid(grid);
-    return 0;
 }
