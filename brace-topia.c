@@ -123,10 +123,18 @@ void print_grid(const Grid *grid, int cycle, int moves){
 /*
 * print_usage: prints usage help
 */
-void print_usage(){
+void print_usage() {
     fprintf(stderr,
-        "usage: \n"
-        "brace-topia [-h] [-t N] [-c N] [-d dim] [-s %%str] [-v %%vac] [-e %%end]\n");
+         "usage:\n"
+         "brace-topia [-h] [-t N] [-c N] [-d dim] [-s %%str] [-v %%vac] [-e %%end]\n"
+         "Option      Default   Example   Description\n"
+         "'-h'        NA        -h        print this usage message.\n"
+         "'-t N'      900000    -t 5000   microseconds cycle delay.\n"
+         "'-c N'      NA        -c4       count cycle maximum value.\n"
+         "'-d dim'    15        -d 7      width and height dimension.\n"
+         "'-s %%str'   50        -s 30     strength of preference.\n"
+         "'-v %%vac'   20        -v30      percent vacancies.\n"
+         "'-e %%endl'  60        -e75      percent Endline braces. Others want Newline.\n");
 }
 
 /*
