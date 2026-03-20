@@ -1,8 +1,8 @@
 Assignment Report
 Assignment name is: Brace-topia
 
-My name is: 	NAME
-My login ID is:	ID
+My name is: Alex Polo
+My login ID is: aap5772
 
 [insert your answers after the question and add more lines as needed.]
 
@@ -12,52 +12,45 @@ My login ID is:	ID
 
 What is the status of the program?
 Does it: put an X inside the [] for your answer
-	[] crash?
-	[] infinite loop when it should not?
-	[] only work in printed mode?
-	[] work fine?
-	[] only implement these options: [list them below]
-	[] other? Explain below.
 
+    [] crash?  
+    [] infinite loop when it should not?  
+    [] only work in printed mode?  
+    [X] work fine?  
+    [] only implement these options: [list them below]  
+    [] other? Explain below.  
+
+I would like to say though that my shuffle seems to be different, since all the tries I saw were different from mine. However, I think this is still fair because I likely just used a different but still correct method of shuffling.
 
 How does your move algorithm work? Describe briefly in English.
 
-
-
+It looks through the grid for unhappy agents and stores them in an array along with their positions. Then it finds all available vacant spots and stores those in a separate list. After that, I shuffle the vacant positions to add randomness and assign the unhappy agents to new spots from that list. Once that is done, I free the temporary arrays.
 
 ============= SIMULATION ANALYSIS ==============
 
 What did you find most revealing about the simulation?
 
-
-
-
-
+At some points it seems like the agents are going to fully sort themselves to one side or the other, but then a random move disrupts it and it takes many more cycles to stabilize again. I was not completely sure what to say here, but that behavior stood out the most to me.
 
 ============= GENERAL PROJECT FEEDBACK ==============
 
 What did I learn?
 
-
-
+I learned about shuffling and simple ways to implement it. I also learned more about Makefiles and how to organize them. This project helped me structure my initial thought process better before coding. I also got more practice working with structs through trial and error.
 
 What was easy about this assignment?
 
-
-
+The planning for this assignment was fairly easy once I understood the problem. I did misread the instructions a couple of times, but I was still able to adjust my approach without too much trouble. Parsing was also straightforward since switch statements made it simple.
 
 What gave you problems or troubles?
 
-
-
+I had some trouble with shuffling because the data I was working with was not consistent at first. I also had issues with my move function, but it only took about an hour to fix since it was a simple mistake. I ended up rewriting it so it properly tracked positions and open spots.
 
 What should the instructor do to improve this assignment?
 
-
-
+I think the instructions were written well overall, but they felt longer than necessary. Because of that, it was easy to get lost while reading through them at times.
 
 What would you have liked to do in this assignment?
 
-
-
+I think it would have been nice to customize the agents more, like choosing different characters or adding some gamification. However, I understand that doing that would make grading much harder.
 
